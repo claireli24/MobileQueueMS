@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "184981224316",
+    "firebase_url": "https://rasppiqueuems.firebaseio.com",
+    "project_id": "rasppiqueuems",
+    "storage_bucket": "rasppiqueuems.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184981224316:android:5d461f36e0dd1be3",
+        "android_client_info": {
+          "package_name": "com.claire.queue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184981224316-tut197kbp905a3h4s88o1732b0qb051e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw-O-9LU2yan2Lx7nfVA3msfV5MvfGJts"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
