@@ -7,6 +7,7 @@ public class Users {
     private String userPhoneNumber;
 
     public Users(){
+
     }
 
     public Users(String userUsername, String userPhoneNumber) {
