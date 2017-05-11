@@ -1,6 +1,5 @@
 package com.claire.queue;
 
-
 public class Users {
 
     private String userUsername;
