@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "184981224316-dbruso82pfg8t9inb0di9jii2uusm3vo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.claire.queue",
+            "certificate_hash": "0ead8f6e9d9f3800bafeb631e371647286673649"
+          }
+        },
+        {
           "client_id": "184981224316-tut197kbp905a3h4s88o1732b0qb051e.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184981224316-tut197kbp905a3h4s88o1732b0qb051e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
