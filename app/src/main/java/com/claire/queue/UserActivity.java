@@ -13,8 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceIdService;
+
+import java.io.FileInputStream;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -28,6 +33,7 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
         sharedPref = getSharedPreferences("sharedpref", 0);
         completed = sharedPref.getBoolean("complete", false);
         if (completed){
@@ -71,7 +77,7 @@ public class UserActivity extends AppCompatActivity {
                     editors.putString("varStrUsername", editUsername.getText().toString());
                     editors.putString("varStrPhoneNumber", editPhoneNumber.getText().toString());
                     editors.putBoolean("complete", true);
-                    editors.apply(); //commit
+                    editors.commit(); //commit
                     Intent btnDone = new Intent(UserActivity.this, MainActivity.class);
                     startActivity(btnDone);
                 }

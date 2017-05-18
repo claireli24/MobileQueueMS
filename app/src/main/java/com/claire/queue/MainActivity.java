@@ -1,6 +1,7 @@
 package com.claire.queue;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,13 +16,13 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.claire.queue.barcode.BarcodeCaptureActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class MainActivity extends AppCompatActivity {
+
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final int BARCODE_READER_REQUEST_CODE = 1;
-
     private TextView mResultTextView;
-    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +39,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
             }
         });
-        Intent intent = getIntent();
-        username = intent.getStringExtra("varStrUsername");
+//        Intent intent = getIntent();
+//        username = intent.getStringExtra("varStrUsername");
 //        Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -51,32 +53,30 @@ public class MainActivity extends AppCompatActivity {
                     Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
                     Point[] p = barcode.cornerPoints;
 //                    mResultTextView.setText(barcode.displayValue);
-                    mResultTextView.setText(barcode.displayValue);
-//                    String stringQ = mResultTextView;
-//                    qrResult();
-                    updateQueue();
-                } else mResultTextView.setText(R.string.no_barcode_captured);
+                    mResultTextView.setText("Notification activated!");
+                    String stringQ = barcode.displayValue;
+                    updateQueue(stringQ);
+                } else mResultTextView.setText(R.string.inactivate);
             } else Log.e(LOG_TAG, String.format(getString(R.string.barcode_error_format),
                     CommonStatusCodes.getStatusCodeString(resultCode)));
         } else super.onActivityResult(requestCode, resultCode, data);
     }
 
-//    private void qrResult(){
-//
-//    }
 
-    private void updateQueue(){
-//        String displayValueQ = "2017-05-12|2000";
-//        String[] separated = displayValueQ.split("|");
-//        //String tableQ = separated[0];       //table
-//        String date = separated[1];         //date
-//        String queueNum = separated[2];     //queue number
+    private void updateQueue(String stringQ){
+        String[] separated = stringQ.split("\\|");
+        String date = separated[0];         //date
+        String queueNum = separated[1];     //queue number
+        String token = FirebaseInstanceId.getInstance().getToken();
 
-        String newUsername = username;
+        SharedPreferences prefs = getSharedPreferences("sharedpref", 0);
+        String username = prefs.getString("varStrUsername", null);
+//        String newUsername = username;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference();
-//        databaseReference.child("queues").child(date).child(queueNum).child("queueUsername").setValue(newUsername);
-        databaseReference.child("queues").child("2017-05-12").child("2001").child("queueUsername").setValue(newUsername);
+        databaseReference.child("queues").child(date).child(queueNum).child("Username").setValue(username);
+        databaseReference.child("queues").child(date).child(queueNum).child("Token").setValue(token);
+//        databaseReference.child("queues").child("2017-05-12").child("2002").child("queueUsername").setValue(newUsername);
     }
 
     @Override

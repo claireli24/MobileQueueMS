@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#7971c1</color>
-    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorPrimary">#83b7db</color>
+    <color name="colorPrimaryDark">#737cd9</color>
+    <color name="colorAccent">#b895f5</color>
+    <color name="colorWhite">#ffffff</color>
+    <!--<color name="gradient_start">#f5a2eb</color>-->
+    <!--<color name="gradient_end">#80deaf</color>-->
 </resources>

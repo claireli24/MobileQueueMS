@@ -8,11 +8,12 @@
     tools:context="com.claire.queue.MainActivity"
     android:orientation="vertical" >
 
+    <!--android:background="@drawable/listgradient"-->
     <TextView
         android:id="@+id/result_textview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/no_barcode_captured"
+        android:text="@string/inactivate"
         android:textSize="22sp"
         android:freezesText="true"
         android:gravity="center"
