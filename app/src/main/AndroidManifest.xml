@@ -24,7 +24,7 @@
         <activity
             android:name=".UserActivity"
             android:label="Registration for New User ☺">
-            <intent-filter android:label="RPQMSwN ☺">
+            <intent-filter android:label="Rasp Pi 🍓">
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

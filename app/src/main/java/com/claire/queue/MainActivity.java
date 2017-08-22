@@ -17,6 +17,7 @@ import com.claire.queue.barcode.BarcodeCaptureActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
             }
         });
+
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
 //        Intent intent = getIntent();
 //        username = intent.getStringExtra("varStrUsername");
 //        Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
@@ -71,10 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("sharedpref", 0);
         String username = prefs.getString("varStrUsername", null);
+        String icnum = prefs.getString("varStrICNum", null);
 //        String newUsername = username;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference();
         databaseReference.child("queues").child(date).child(queueNum).child("Username").setValue(username);
+        databaseReference.child("queues").child(date).child(queueNum).child("IC").setValue(icnum);
         databaseReference.child("queues").child(date).child(queueNum).child("Token").setValue(token);
 //        databaseReference.child("queues").child("2017-05-12").child("2002").child("queueUsername").setValue(newUsername);
     }

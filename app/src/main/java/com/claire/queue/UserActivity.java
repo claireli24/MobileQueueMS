@@ -23,7 +23,7 @@ import java.io.FileInputStream;
 
 public class UserActivity extends AppCompatActivity {
 
-    EditText editUsername, editPhoneNumber;
+    EditText editUsername, editPhoneNumber, editICNum;
     Button buttonDone;
     boolean completed;
     SharedPreferences sharedPref;
@@ -64,6 +64,7 @@ public class UserActivity extends AppCompatActivity {
 
         editUsername = (EditText) findViewById(R.id.edtUsername);
         editPhoneNumber = (EditText) findViewById(R.id.edtPhoneNumber);
+        editICNum = (EditText) findViewById(R.id.edtICNum);
         buttonDone = (Button) findViewById(R.id.btnDone);
 
         buttonDone.setOnClickListener(new View.OnClickListener() {
@@ -72,10 +73,12 @@ public class UserActivity extends AppCompatActivity {
 
                 String usernameVal = editUsername.getText().toString();
                 String phoneNumberVal = editPhoneNumber.getText().toString();
-                if (!usernameVal.equals("") && !phoneNumberVal.equals("")){
+                String icNumVal = editICNum.getText().toString();
+                if (!usernameVal.equals("") && !phoneNumberVal.equals("") && !icNumVal.equals("")){
                     SharedPreferences.Editor editors = sharedPref.edit();
                     editors.putString("varStrUsername", editUsername.getText().toString());
                     editors.putString("varStrPhoneNumber", editPhoneNumber.getText().toString());
+                    editors.putString("varStrICNum", editICNum.getText().toString());
                     editors.putBoolean("complete", true);
                     editors.commit(); //commit
                     Intent btnDone = new Intent(UserActivity.this, MainActivity.class);
@@ -109,10 +112,11 @@ public class UserActivity extends AppCompatActivity {
     private void addUser(){
         String username = editUsername.getText().toString();
         String phoneNumber = editPhoneNumber.getText().toString();
+        String icNum = editICNum.getText().toString();
 
-        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(phoneNumber)){
+        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(phoneNumber) && !TextUtils.isEmpty(icNum)){
             String id = databaseUsers.push().getKey();
-            Users user = new Users(username, phoneNumber);
+            Users user = new Users(username, phoneNumber, icNum);
             databaseUsers.child(id).setValue(user);
             Toast.makeText(this, "User added", Toast.LENGTH_LONG).show();
             toMainActivity();
@@ -126,8 +130,10 @@ public class UserActivity extends AppCompatActivity {
         Intent intent = new Intent(UserActivity.this, MainActivity.class);
         String strUsername = ((EditText) findViewById(R.id.edtUsername)).getText().toString();
         String strPhoneNumber = ((EditText) findViewById(R.id.edtPhoneNumber)).getText().toString();
+        String strICNum = ((EditText) findViewById(R.id.edtICNum)).getText().toString();
         intent.putExtra("varStrUsername", strUsername);
         intent.putExtra("varStrPhoneNumber", strPhoneNumber);
+        intent.putExtra("varStrICNum", strICNum);
         startActivity(intent);
         finish();
     }
